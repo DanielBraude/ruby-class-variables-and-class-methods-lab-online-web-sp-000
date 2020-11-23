@@ -1,24 +1,24 @@
-class Song
-  attr_accessor :name, :artist, :genre
+class String
 
-  @@count = 0
-  @@genres = []
-  @@artists = []
-
-  def initialize(song_name, artist, genre)
-    @name = song_name
-    @artist = artist
-    @genre = genre
-    @@count += 1
-    @@genres << genre
-    @@artists << artist
+  def sentence?
+    self.end_with?(".")
   end
 
-  def self.count
-    @@count
+  def question?
+    self.end_with?("?")
   end
 
-  def self.genres
-    @@genres.uniq!
+  def exclamation?
+    self.end_with?("!")
   end
+
+  def count_sentences
+    self.split(/[.!?]/).reject {|x| x.empty?}.size
+  end
+
+  def count_sentences_words
+    self.split(/[.!?]/).map{|x| !(x.match(/\w+/).nil?)}.reject{|x| x == false}.size
+
+  end
+
 end
